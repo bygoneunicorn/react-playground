@@ -1,0 +1,27 @@
+.fullImage {
+    height: 100vh;
+    width: 100vw;
+    background: url("https://media.gettyimages.com/photos/road-through-the-wintery-forest-picture-id882917648") no-repeat;
+    background-size: 0%; 
+    background-position: 50% 50%;  
+    animation-name: rotate-in;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+
+
+}
+@keyframes rotate-in {
+    0%   {background-size: 0%; transform: rotate(180deg);}
+    25%  {background-size: 25%; transform: rotate(90deg);}
+    50%  {background-size: 50%; transform: rotate(180deg);}
+    75%  {background-size: 75%; transform: rotate(270deg);}
+    100% {background-size: 100%; transform: rotate(360deg);}
+}
+.droppable {
+    width: 100%;
+    height: 500px;
+    background: green;
+}

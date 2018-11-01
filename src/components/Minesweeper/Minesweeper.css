@@ -1,0 +1,14 @@
+.grid-container{
+    background: light-blue;
+    width: 224px;
+    height: 224px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin: 0 auto;
+}
+.box{
+    background: rgb(117, 117, 117);
+    width: 12px;
+    height: 12px;
+    border: 1px solid rgb(126, 152, 199);
+}

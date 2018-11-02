@@ -13,7 +13,7 @@ export default class Calendar extends React.Component{
             elementInput: []
         }
     }
-    componentDidMount(){
+    componentWillMount(){
         this.addElementStyle()
     }
     createEmptyArray(height, width) {
@@ -31,8 +31,8 @@ export default class Calendar extends React.Component{
     }
     addElementStyle() {
         let gridSize = (this.state.height + 1) * (this.state.width +1)
+        let tempStyleArr = []
         for(let i=0; i<gridSize; i++) {
-            let tempStyleArr = this.state.elementStyle
             tempStyleArr.push(
                 {
                     background: 'green',
@@ -40,36 +40,42 @@ export default class Calendar extends React.Component{
                 }
             )
         }
+        this.setState({
+            elementStyle: tempStyleArr
+        })
     }
     onBackgroundChange(input, index){
-        let tempInputArr = this.state.elementInput
+        let tempInputArr = this.state.elementStyle
 
         tempInputArr[index] = Object.assign({}, tempInputArr[index], {background: input})
-        console.log(tempInputArr[input]);
+        console.log(tempInputArr[index]);
         
         this.setState({
-            elementInput: tempInputArr
+            elementStyle: tempInputArr
         })
     }
     onColorChange(input, index){
-        let tempInputArr = this.state.elementInput
+        let tempInputArr = this.state.elementStyle
 
         tempInputArr[index] = Object.assign({}, tempInputArr[index], {color: input})
 
         this.setState({
-            elementInput: tempInputArr
+            elementStyle: tempInputArr
         })
     }
     changeStyle(index) {
         let tempArr = this.state.elementStyle.slice()
-        console.log(tempArr[index], index, tempArr[index], this.state.elementInput[index])
         tempArr[index] = this.state.elementInput[index]
-        console.log(tempArr, index);
         if(tempArr[index] !== undefined){
             this.setState({
                 elementStyle: tempArr
             })
         }
+    }
+    resetState(){
+        this.setState({
+            height: 5
+        })
     }
     render(){
         let now = new Date()
@@ -99,15 +105,18 @@ export default class Calendar extends React.Component{
             {this.state.weekdays[yposition]} cellIndex:{cellIndex}
             <br/>
 
-            <input type='color' onChange={(e) => this.onBackgroundChange(e.target.value, cellIndex)}/><button onClick={() => this.changeStyle(cellIndex)}>Background Enter</button>
-            <input type='color' onChange={(e) => this.onColorChange(e.target.value, cellIndex)}/><button onClick={() => this.changeStyle(cellIndex)}>Text Color Enter</button>
+            <input type='color' onChange={(e) => this.onBackgroundChange(e.target.value, cellIndex)} value={this.state.elementStyle[cellIndex].background}/>
+            <input type='color' onChange={(e) => this.onColorChange(e.target.value, cellIndex)}/>
             
             </div>
             
             })}
             </div>
            return rows
+           
+           //    this.resetState()
         })        
+        console.log(this.state.elementStyle);
         return(
             <div>
                 <div>{fullYear} full year</div>

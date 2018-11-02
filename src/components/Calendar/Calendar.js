@@ -35,15 +35,26 @@ export default class Calendar extends React.Component{
             let tempStyleArr = this.state.elementStyle
             tempStyleArr.push(
                 {
-                    background: 'green'
+                    background: 'green',
+                    color: 'black'
                 }
             )
         }
     }
-    onInputChange(input, index){
+    onBackgroundChange(input, index){
         let tempInputArr = this.state.elementInput
 
-        tempInputArr[index] = {background: input};
+        tempInputArr[index] = Object.assign({}, tempInputArr[index], {background: input})
+        console.log(tempInputArr[input]);
+        
+        this.setState({
+            elementInput: tempInputArr
+        })
+    }
+    onColorChange(input, index){
+        let tempInputArr = this.state.elementInput
+
+        tempInputArr[index] = Object.assign({}, tempInputArr[index], {color: input})
 
         this.setState({
             elementInput: tempInputArr
@@ -51,13 +62,14 @@ export default class Calendar extends React.Component{
     }
     changeStyle(index) {
         let tempArr = this.state.elementStyle.slice()
-        console.log(tempArr[index].background, index, tempArr[index], this.state.elementInput[index])
+        console.log(tempArr[index], index, tempArr[index], this.state.elementInput[index])
         tempArr[index] = this.state.elementInput[index]
         console.log(tempArr, index);
-        
-        this.setState({
-            elementStyle: tempArr
-        })
+        if(tempArr[index] !== undefined){
+            this.setState({
+                elementStyle: tempArr
+            })
+        }
     }
     render(){
         let now = new Date()
@@ -87,7 +99,8 @@ export default class Calendar extends React.Component{
             {this.state.weekdays[yposition]} cellIndex:{cellIndex}
             <br/>
 
-            <input type='color' onChange={(e) => this.onInputChange(e.target.value, cellIndex)}/><button onClick={() => this.changeStyle(cellIndex)}>Enter</button>
+            <input type='color' onChange={(e) => this.onBackgroundChange(e.target.value, cellIndex)}/><button onClick={() => this.changeStyle(cellIndex)}>Background Enter</button>
+            <input type='color' onChange={(e) => this.onColorChange(e.target.value, cellIndex)}/><button onClick={() => this.changeStyle(cellIndex)}>Text Color Enter</button>
             
             </div>
             

@@ -27,6 +27,7 @@ export default class Home extends Component{
             <div>
                 <h1>Home</h1>
                 <Link to="/clients">Clients</Link>
+                <Link to="/calendar">Calendar</Link>
 
                 {/* <div className='burgerMenuContainer' onClick={() => this.handleMenu()}>
                     <div className={topIconClass}></div>

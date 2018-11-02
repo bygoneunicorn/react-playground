@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {HashRouter, Switch, Route} from 'react-router-dom';
 import Home from './components/Home/Home';
 import Clients from './components/Clients/Clients';
+import Calendar from './components/Calendar/Calendar';
 import './App.css';
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
         <div className="App">
           <Switch>
             <Route path="/clients" component={Clients}/>
+            <Route path="/calendar" component={Calendar}/>
             <Route path="/" component={Home}/>
           </Switch>
         </div>

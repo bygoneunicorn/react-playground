@@ -1,0 +1,16 @@
+.row {
+    width: 100%;
+    color: blue;
+}
+.cell {
+    height: 50px;
+    width: 13%;
+    float: left;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+.time-column {
+    float: left;
+    width: 9%;
+    box-sizing: border-box;
+}
